@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  body {
+      background-color: #f0f0f0;
+      text-align: center;
+  }
+
+  h1 {
+      color: rgb(255, 0, 111);
+      font-family: 'Arial', sans-serif;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+  }
+
+  /* You can add more styles as needed */
+
+</style>
+</head>
+<body><br>
+<h1>BOOK STORE</h1><br>
+<div class="row">
+    {% for i in p %}
+    <div class="col-md-4">
+      <a href="{% url 'myapp:detail' i.id i.slug %}"><b>{{i.title}}</b></a><br>
+      <img src="{{i.img.url}}" width=300 height=300 alt=""><br>
+      {% if i.book_available is True %}<br>
+      <b>₹{{i.price}}</b>
+      <br><br><br>
+    {% else %}<br>
+    <b><li class="text-danger">Out of Stock</li></b>
+    {% endif %}
+      <style>
+        body{
+          background-color:lightcyan;
+
+        }
+      </style>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

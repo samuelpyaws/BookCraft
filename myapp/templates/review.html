@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <b>{{ d.title }}</b><br>
+        {{ d.description }}<br>
+        {{ d.price }}<br>
+    </div>
+    <div class="col-md-6">
+        <img src="{{ d.img.url }}" width="400" height="500">
+    </div>
+</div>
+
+<style>
+        body{
+          background-color:lightcyan;
+
+        }
+    .my-form {
+        max-width: 400px; /* Adjust the maximum width as needed */
+    
+    }
+
+    .my-form form {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .my-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .my-form button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .my-form button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="my-form">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<div class="mt-4">
+    <h6>Reviews:</h6>
+    {% for review in reviews %}
+        {{ forloop.counter }} - {{ review.review }} <br>
+        at {{ review.created_at }} by {{ review.user }} <br>
+    {% endfor %}
+</div>
+{% endblock %}

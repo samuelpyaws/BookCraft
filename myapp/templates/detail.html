@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body{
+      background-color:lightcyan;
+
+    }
+  </style>
+<div class="row">
+    <div class="col-md-6"><br>
+        <b>{{ d.title }}</b><br>
+        {{ d.description }}<br>
+        <b>{{ d.price }}</b><br>
+    </div>
+    <div class="col-md-4"><br>
+        <img src="{{ d.img.url }}" width="400" height="500">
+    </div>
+</div>
+{% if d.book_available is True %}<br>
+<form action="{% url 'myapp:detail' d.id d.slug %}" method="post">
+    {% csrf_token %}
+    {{ f }}
+    <input class="btn btn-info" type="submit" value="Add to Cart">
+</form><br><br>
+{% else %}<br>
+<b style="color:red"><li> Book is not available</li></b>
+{% endif %}
+<a class="btn btn-primary" href="{% url 'myapp:review' d.id d.pk %}"><button>Can you please give Review</button></a>
+{% endblock %}

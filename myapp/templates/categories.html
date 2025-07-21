@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        h1 {
+            color: rgb(255, 0, 111);
+            font-family: 'Arial', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* You can add more styles as needed */
+
+    </style>
+</head>
+<body><br>
+    <h1>BOOK STORE</h1><br>
+    <!-- Your book store content goes here -->
+
+<div class="container mt-6">
+    <div class="row">
+        {% for product in c %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ product.img.url }}" class="card-img-top img-fluid rounded" alt="{{ product.title }}" style="max-width: 300px; height: 310px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'myapp:products' product.id product.slug %}">{{ product.title }}</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <style>
+        body{
+            background-color:lightcyan;
+        }
+      </style>
+</div>
+{% endblock %}
+</body>
+</html>
+
